@@ -1,0 +1,108 @@
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.inputBox{
+    display: inline;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    &:focus{
+        border-color: #2ecc71;
+    }
+}
+
+.hideTable {
+    display: none !important;
+  }
+  
+  span {
+    display: inline-block;
+  }
+  
+  .horizontalSpace {
+    width: 2rem;
+  }
+  
+  .verticalSpace {
+    height: 5rem;
+  }
+  
+  .trendComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .modalButton {
+    background-color: rgba(23, 94, 94, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modalButton:hover {
+    background-color: darkblue;
+  }
+  
+  .styledTable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    min-width: 400px;
+    /* width: 100%; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .styledTable thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .styledTable th,
+  .styledTable td {
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+  
+  .styledTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .styledTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .styledTable tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  .styledTable tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+  
+  .styledTable tr:hover {
+    cursor: pointer;
+    background-color: #ccc !important;
+  }
+  
+  .multiSelectContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
