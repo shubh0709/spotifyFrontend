@@ -28,8 +28,6 @@ export function Comment({
     return (
         <div className={styles.commentContainer}>
             <div className={styles.dummyHeight} />
-            <p className={styles.commentHeaderText}>{commentId}</p>
-            <div className={styles.dummyHeight} />
             <p className={styles.commentHeaderText}>{username}</p>
             <div className={styles.dummyHeight} />
             <p className={styles.commentDescText}>{text}</p>
@@ -146,7 +144,7 @@ const updateCommentReplies = (comments: Comments[], commentId: string, newReply:
 
 
 
-export function CommentSection({ songDetails }: { songDetails: SongDetails }) {
+export function CommentSection({ songDetails, username }: { songDetails: SongDetails, username: string }) {
     const [comments, setComments] = useState<Comments[]>([]);
     const [newComment, setNewComment] = useState('');
     const [loading, setLoading] = useState(false);
@@ -175,7 +173,7 @@ export function CommentSection({ songDetails }: { songDetails: SongDetails }) {
         if (!newComment.trim()) return;
         setLoading(true);
         try {
-            const postedComment = await postComment(songDetails.trackId, newComment);
+            const postedComment = await postComment(songDetails.trackId, newComment, username);
             setComments([...comments, postedComment]);
             setNewComment('');
         } catch (err) {
@@ -190,12 +188,12 @@ export function CommentSection({ songDetails }: { songDetails: SongDetails }) {
         setLoading(true);
 
         try {
-            const newReply: Comments = { id: `${Date.now()}`, trackId: commentId, text: replyText, username: 'Current User', replies: [] };
+            const newReply: Comments = { id: `${Date.now()}`, trackId: commentId, text: replyText, username: username, replies: [] };
             const updatedComments = updateCommentReplies(comments, commentId, newReply);
             setComments(updatedComments);
             setReplyingTo(commentId);
 
-            const replyResponse = await postReply(commentId, replyText);
+            const replyResponse = await postReply(commentId, replyText, username);
             setTimeout(() => fetchComments(songDetails.trackId), 1000);
         } catch (err) {
             setError('Failed to post reply');
@@ -228,14 +226,15 @@ export function CommentSection({ songDetails }: { songDetails: SongDetails }) {
 
     return (
         <div className={styles.mainContainer}>
+            <h1 className={styles.loadingText}> {songDetails.name}</h1>
             <PostNewComment
                 text={newComment}
                 setText={setNewComment}
                 handleSubmit={handlePostNewComment}
                 placeholder="Write a new comment..."
             />
-            {loading && <p>Loading comments...</p>}
-            {error && <p>Error: {error}</p>}
+            {loading && <h1>Loading comments...</h1>}
+            {error && <h1>Error: {error}</h1>}
             {commentElements}
         </div>
     );

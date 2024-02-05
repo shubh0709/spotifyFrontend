@@ -62,17 +62,23 @@ export function searchTrack() {
         });
     };
 }
-
 export function checkAuthentication() {
     return fetch(`${API_URL}/check-auth`, {
-        credentials: 'include' // Important for sending cookies
+        credentials: 'include'
     })
-        .then(response => {
-            return response.json();
+        .then(response => response.json())
+        .then(data => {
+            if (data.isAuthenticated) {
+                return { isAuthenticated: true, user: data.user };
+            } else {
+                return { isAuthenticated: false, user: data.user };
+            }
         })
-        .catch(error => console.error('Error checking authentication:', error));
+        .catch(error => {
+            console.error('Error checking authentication:', error);
+            return { isAuthenticated: false, user: null };
+        });
 }
-
 
 export function getRoot(): Promise<string> {
     return fetch(`${API_URL}/`)
@@ -133,11 +139,11 @@ export function searchTracks(query: string): Promise<any> {
 }
 
 
-export function postComment(trackId: string, text: string, userId?: string): Promise<any> {
+export function postComment(trackId: string, text: string, username: string): Promise<any> {
     return fetch(`${API_URL}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ trackId, text, userId }),
+        body: JSON.stringify({ trackId, text, username }),
     })
         .then(response => {
             if (!response.ok) {
@@ -166,11 +172,11 @@ export function getComments(trackId: string): Promise<any> {
         });
 }
 
-export function postReply(commentId: string, text: string, userId?: string): Promise<any> {
+export function postReply(commentId: string, text: string, username?: string): Promise<any> {
     return fetch(`${API_URL}/comments/${commentId}/reply`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ commentId, text, userId }),
+        body: JSON.stringify({ commentId, text, username }),
     })
         .then(response => {
             if (!response.ok) {

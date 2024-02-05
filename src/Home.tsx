@@ -4,7 +4,7 @@ import { CommentSection } from "./components/CommentSection";
 import { SongDetails } from "./types";
 
 
-export function MyComponent(props: any) {
+export function Home({ username }: { username: string }) {
   const [selectedTrack, setSelectedTrack] = useState<SongDetails>();
 
   const handleTrackSelection = ({ name, trackId }: SongDetails) => {
@@ -14,7 +14,7 @@ export function MyComponent(props: any) {
   return (
     <>
       <Search onTrackSelect={handleTrackSelection} />
-      {selectedTrack && <CommentSection songDetails={selectedTrack} />}
+      {selectedTrack && <CommentSection songDetails={selectedTrack} username={username} />}
     </>
   );
 }

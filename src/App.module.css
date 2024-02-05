@@ -6,7 +6,7 @@
 }
 
 .App {
-  text-align: center;
+  /* text-align: center; */
   /* width: 100vw; */
   max-width: 1440px;
   min-height: 100vh;
@@ -15,7 +15,6 @@
 .loadingText{
   font-size: 2.5rem;
   font-weight: 500;
-  color: #000;
   margin-top: 2rem;
 }
 
@@ -30,13 +29,14 @@
   }
 }
 
-.App-header {
+.appHeader {
   background-color: #282c34;
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
