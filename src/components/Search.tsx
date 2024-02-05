@@ -38,7 +38,7 @@ export function Search({ onTrackSelect }: { onTrackSelect: ({ name, trackId }: S
                 className={styles.inputBox}
                 placeholder="Enter track name"
             />
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <h1 className={styles.loadingText}>Loading...</h1>}
             {error && <p>Error: {error}</p>}
             {data && (
                 <div >

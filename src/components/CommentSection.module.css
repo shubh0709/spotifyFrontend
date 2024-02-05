@@ -4,6 +4,9 @@ padding: 2rem;
 
 .replyToCommentContainer{
     padding: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .postCommentContainer{
@@ -13,7 +16,7 @@ padding: 2rem;
     justify-content: flex-start;
     width: 100%;
     margin: 0 auto;
-    
+    margin-top: 2rem;
 }
 
 .textArea{
@@ -59,7 +62,8 @@ padding: 2rem;
     display: inline-block;
     cursor: pointer;
     font-size: 1.2rem;
-    /* align-self: flex-start; */
+
+    align-self: flex-start;
 }
 
 .commentFooterText{
